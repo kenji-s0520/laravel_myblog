@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/diary', 'DiaryController@index')->name('diary.list'); // URLでビューを呼び出すように記述
+Route::get('/diary/{id}', 'DiaryController@show')->name('diary.show');
