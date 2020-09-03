@@ -14,7 +14,11 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        //
+        $message = "Welcome to my page!";
+        $diaries = Diary::all();   // データベースのdiariesから全てのデータを取得する
+        // return view("index");  // indexファイルを呼び出す
+        return view("index", ["message" => $message, "diaries" => $diaries]); // 変数$messageと$diariesをビューに渡すようにする
+        
     }
 
     /**
@@ -44,9 +48,11 @@ class DiaryController extends Controller
      * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function show(Diary $diary)
+    public function show(Request $request, $id, Diary $diary)
     {
-        //
+        $message = "This is your diary " .$id;
+        $diary = Diary::find($id);
+        return view("show", ["message" => $message, "diary" => $diary]);
     }
 
     /**
