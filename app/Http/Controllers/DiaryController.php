@@ -26,9 +26,15 @@ class DiaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $diary = new Diary();
+        
+        $diary->topic = "It is a sunny day today.";
+        $diary->weather = "sunny";
+        $diary->save();
+
+        return redirect('/diary');
     }
 
     /**
@@ -84,8 +90,10 @@ class DiaryController extends Controller
      * @param  \App\Diary  $diary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Diary $diary)
+    public function destroy(Request $request, $id, Diary $diary)
     {
-        //
+        $diary = Diary::find($id); 
+        $article->delete();
+        return redirect('/diary');
     }
 }
